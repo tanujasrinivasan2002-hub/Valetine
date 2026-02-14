@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Be My Valentine 💖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      text-align: center;
+      color: #fff;
+    }
+    /* Layout & base sizing */
+    :root {
+      --base-font: 18px;
+      --heading-font: 36px;
+      --p-font: 20px;
+      --btn-font: 18px;
+      --btn-padding-vertical: 14px;
+      --btn-padding-horizontal: 28px;
+      --img-width: 320px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      color: #fff;
+      font-size: var(--base-font);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-align: center;
+    }
+
+    img {
+      width: var(--img-width);
+      max-width: 90vw;
+      border-radius: 20px;
+      margin: 8px 0;
+      box-shadow: 0 0 20px rgba(255,255,255,0.6);
+      display: block;
+    }
+
+    h1 {
+      font-size: var(--heading-font);
+      line-height: 1.1;
+      margin: 8px 0 6px;
+    }
+
+    p {
+      font-size: var(--p-font);
+      padding: 6px 12px;
+      margin: 0;
+      max-width: 900px;
+    }
+
+    button {
+      padding: var(--btn-padding-vertical) var(--btn-padding-horizontal);
+      font-size: var(--btn-font);
+      border: none;
+      border-radius: 28px;
+      margin: 8px;
+      cursor: pointer;
+      background-color: #ff4d6d;
+      color: white;
+      transition: transform 0.18s ease, background-color 0.18s ease;
+      display: inline-block;
+      text-align: center;
+      min-width: 160px;
+    }
+
+    button:hover {
+      background-color: #ff1e4d;
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* Action button rows: place buttons side-by-side */
+    .actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- FIRST PAGE -->
+  <div class="container" id="firstPage">
+    <h1>Will you be my Valentine? 💖</h1>
+    <img src="IMG_2485.JPG" alt="Baby with rose">
+    <div class="actions">
+      <button onclick="yesClicked()">Yes 😍</button>
+      <button onclick="noClicked()">No 🙈</button>
+    </div>
+  </div>
+
+  <!-- ARE YOU SURE PAGE -->
+  <div class="container hidden" id="surePage">
+    <h1>Are you sure about your decision? 😏</h1>
+    <div class="actions">
+      <button onclick="goBack()">Nooo 😭</button>
+      <button onclick="finalNo()">Yes 😤</button>
+    </div>
+  </div>
+
+  <!-- FUNNY PAGE -->
+  <div class="container hidden" id="funnyPage">
+    <h1>😌💘</h1>
+    <img src="PHOTO-2026-02-14-12-38-48.jpg" alt="Cute funny image">
+    <div class="actions">
+      <button onclick="startMessages()">I'm your valetine😝</button>
+    </div>
+  </div>
+
+  <!-- MESSAGE PAGE -->
+  <div class="container hidden" id="messagePage">
+    <h1 id="messageTitle"></h1>
+    <img id="messageImage" src="PHOTO-2026-02-14-12-38-48 (5).jpg">
+    <p id="messageText"></p>
+    <div class="actions">
+      <button onclick="nextMessage()">Next Cute Surprise 💕</button>
+    </div>
+  </div>
+
+  <!-- FINAL PAGE -->
+  <div class="container hidden" id="finalPage">
+    <h1>You are officially my Valentine now! 💘</h1>
+    
+    <img src="PHOTO-2026-02-14-12-38-48 (5).jpg" alt="Final cute image">
+
+    <p>Forever stuck with me 😌❤️</p>
+
+    <button onclick="goHome()">Back to Beginning 💞</button>
+  </div>
+
+<script>
+  const messages = [
+    {
+      title: "Message 1 💌",
+      text: "The moment I saw you, I felt you were going to do something special in my life. And without a doubt, you became my whole world just like I imagined. The universe made us meet on that SH11 bus… and that moment changed everything for me. 💫❤️ ❤️",
+      img: "314E17F4-3262-4649-B61C-FE1981833114.jpeg"
+    },
+    {
+      title: "Message 2 🌸",
+      text: "You make me laugh even when I'm at my lowest. You listen to all my gossip and endless stories without ever getting bored… or at least you pretend very well not to be bored 😜💕",
+      img: "PHOTO-2026-02-14-12-47-12.jpg"
+    },
+    {
+      title: "Message 3 🌹",
+      text: "Every moment with you feels magical. I miss you so much… but I carry so many beautiful memories of us in my heart. Those memories keep me smiling even when you’re not beside me. 💖✨",
+      img: "PHOTO-2026-02-14-12-38-48 (4).jpg"
+    },
+    {
+      title: "Message 4 💞",
+      text: "I promise to annoy you forever but also love you endlessly 😜",
+      img: "PHOTO-2026-02-14-12-38-48 (2).jpg"
+    },
+    {
+      title: "Message 5 💖",
+      text: "So once again… Will you be mine forever? ❤️",
+      img: "PHOTO-2026-02-14-12-38-48 (1).jpg"
+    }
+  ];
+
+  let currentIndex = 0;
+
+  function yesClicked() {
+    document.getElementById("firstPage").classList.add("hidden");
+    startMessages();
+  }
+
+  function noClicked() {
+    document.getElementById("firstPage").classList.add("hidden");
+    document.getElementById("surePage").classList.remove("hidden");
+  }
+
+  function goBack() {
+    document.getElementById("surePage").classList.add("hidden");
+    document.getElementById("firstPage").classList.remove("hidden");
+  }
+
+  function finalNo() {
+    document.getElementById("surePage").classList.add("hidden");
+    document.getElementById("funnyPage").classList.remove("hidden");
+  }
+
+  function startMessages() {
+    document.getElementById("funnyPage").classList.add("hidden");
+    document.getElementById("messagePage").classList.remove("hidden");
+    showMessage();
+  }
+
+  function showMessage() {
+    document.getElementById("messageTitle").innerText = messages[currentIndex].title;
+    document.getElementById("messageText").innerText = messages[currentIndex].text;
+    document.getElementById("messageImage").src = messages[currentIndex].img;
+  }
+
+  function nextMessage() {
+    currentIndex++;
+    if (currentIndex < messages.length) {
+      showMessage();
+    } else {
+      document.getElementById("messagePage").classList.add("hidden");
+      document.getElementById("finalPage").classList.remove("hidden");
+    }
+  }
+
+  function goHome() {
+    currentIndex = 0;
+
+    document.getElementById("finalPage").classList.add("hidden");
+    document.getElementById("firstPage").classList.remove("hidden");
+  }
+</script>
+
+</body>
+</html>
